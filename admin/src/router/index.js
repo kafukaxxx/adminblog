@@ -1,8 +1,17 @@
 import { createRouter } from 'vue-router'
-
+const Login = () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+const Admin = () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue')
 
 const routes = [
  
+  {
+    path:'/login',
+    name:'login',
+    meta:{
+      title:'请登录'
+    },
+    component: Login
+  }
   // {
   //   path: '/about',
   //   name: 'about',
