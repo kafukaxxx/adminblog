@@ -14,6 +14,6 @@ export default {
     return {
       locale:zhCN
     }
-  }
+  },
 }
 </script>

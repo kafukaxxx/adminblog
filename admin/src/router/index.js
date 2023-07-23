@@ -11,6 +11,14 @@ const routes = [
       title:'请登录'
     },
     component: Login
+  },
+  {
+    path:'/',
+    name: 'admin',
+    meta: {
+      title:"blog 管理页面"
+    },
+    component:Admin
   }
   // {
   //   path: '/about',
@@ -24,6 +32,20 @@ const routes = [
 
 const router = createRouter({
   routes
+})
+
+router.beforeEach((to,from,next)=> {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+  const userToken = window.sessionStorage.getItem('token')
+  if (to.path === '/login') return next()
+  if (!userToken) {
+    next('/login')
+  }else {
+    next()
+  }
 })
 
 export default router
