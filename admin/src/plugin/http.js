@@ -1,13 +1,10 @@
-import Vue from 'vue'
-import axios from 'axios'
+// import { axios as MyAxios } from 'axios'
 
-let Url = 'http://127.0.0.1:8000/api/v1'
-axios.defaults.baseURL = Url
-axios.interceptors.request.use(config => {
-    config.headers.Authorization = `Bearer ${window.sessionStorage.getItem('token')}`
-    return config
-  })
-  
-  Vue.prototype.$http = axios
-  
-  export { Url }
+const Url = 'http://127.0.0.1:8000/api/v1'
+// MyAxios.defaults.baseURL = Url
+// MyAxios.interceptors.request.use(config => {
+//   config.headers.Authorization = `Bearer ${window.sessionStorage.getItem('token')}`
+//   return config
+// })
+
+export { Url }

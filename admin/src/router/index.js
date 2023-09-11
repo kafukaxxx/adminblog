@@ -1,24 +1,23 @@
-import { createRouter } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 const Login = () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
 const Admin = () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue')
 
 const routes = [
- 
   {
-    path:'/login',
-    name:'login',
-    meta:{
-      title:'请登录'
+    path: '/login',
+    name: 'login',
+    meta: {
+      title: '请登录'
     },
     component: Login
   },
   {
-    path:'/',
+    path: '/',
     name: 'admin',
     meta: {
-      title:"blog 管理页面"
+      title: 'blog 管理页面'
     },
-    component:Admin
+    component: Admin
   }
   // {
   //   path: '/about',
@@ -31,19 +30,22 @@ const routes = [
 ]
 
 const router = createRouter({
+  history: createWebHistory(),
   routes
 })
 
-router.beforeEach((to,from,next)=> {
+router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  next()
+  console.log('beforeEach 执行了')
   const userToken = window.sessionStorage.getItem('token')
+  console.log('token:' + userToken)
   if (to.path === '/login') return next()
   if (!userToken) {
+    console.log('跳login')
     next('/login')
-  }else {
+  } else {
     next()
   }
 })
